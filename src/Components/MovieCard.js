@@ -1,26 +1,26 @@
 import React from 'react';
-import { Grid, Typography, Box, CardMedia, CardContent, CardActions, CardActionArea, Button, Card, makeStyles } from '@material-ui/core';
-import Rating from '@material-ui/lab/Rating';
+import { Grid, Typography, CardMedia, CardContent, CardActions, CardActionArea, Button, Card, makeStyles } from '@material-ui/core';
+import ReactStars from "react-rating-stars-component";
 
 
+const useStyles = makeStyles({
+    root: {
+        maxWidth: 345,
+    },
+    media: {
+        height: 500,
+    },
+});
 
 
+export const MovieCard = ({ movieCard, handleDelete }) => {
 
-export const MovieCard = ({  movieCard ,deleteCard}) => {
-    const useStyles = makeStyles({
-        root: {
-            maxWidth: 345,
-        },
-        media: {
-            height: 500,
-        },
-    });
     const classes = useStyles();
 
     return (
         <div style={{ padding: 30 }}>
 
-            <Grid
+            <Grid container
 
                 item
                 alignContent="flex-start"
@@ -39,19 +39,21 @@ export const MovieCard = ({  movieCard ,deleteCard}) => {
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="h2">
                                 {movieCard.title}
+                                <ReactStars
+                                    count={5}
+                                    size={24}
+                                    activeColor="#ffd700"
+                                    value={movieCard.rate}
+                                    edit={false}
+                                />
                             </Typography>
-                            <Box component="fieldset" mb={3} borderColor="transparent">
-                                <Typography component="legend">Rating</Typography>
-                                <Rating name="read-only" value={movieCard.rate} readOnly />
-                            </Box>
-
                             <Typography variant="body2" color="textSecondary" component="p">
                                 {movieCard.desc}
                             </Typography>
                         </CardContent>
                     </CardActionArea>
                     <CardActions>
-                        <Button onClick={() => { deleteCard(movieCard.id) }} variant="contained" color="secondary">
+                        <Button onClick={() => handleDelete(movieCard.id)} variant="contained" color="secondary">
                             Delete
                         </Button>
                     </CardActions>

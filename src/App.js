@@ -1,12 +1,12 @@
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react'
 import { MovieList } from './Components/MovieList';
 import AddNewMovie from './Components/AddNewMovie'
-import { AppBar, Toolbar, IconButton, Typography, InputBase, makeStyles, fade, Button } from '@material-ui/core';
+import { AppBar, Toolbar, IconButton, Typography, InputBase, makeStyles, fade } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import Rating from '@material-ui/lab/Rating';
+import ReactStars from "react-rating-stars-component";
+
 
 function App() {
   const useStyles = makeStyles((theme) => ({
@@ -64,94 +64,94 @@ function App() {
     },
 
 
+
   }
   ));
   const classes = useStyles();
-  const [value, setValue] = React.useState(2);
 
   const data = [
     {
       title: "The Shawshank Redemption",
       desc: "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
-      id: 1,
+      id: Math.random(),
       rate: 5,
       imgSrc: "https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_QL100_UX258.jpg"
     }, {
       title: "The Godfather",
       desc: "An organized crime dynasty's aging patriarch transfers control of his clandestine empire to his reluctant son.",
-      id: 2,
+      id: Math.random(),
       rate: 4,
       imgSrc: "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_QL100_UX258.jpg"
     }, {
       title: "The Godfather: Part II",
       desc: "The early life and career of Vito Corleone in 1920s New York City is portrayed, while his son, Michael, expands and tightens his grip on the family crime syndicate.",
-      id: 3,
+      id: Math.random(),
       rate: 4,
       imgSrc: "https://m.media-amazon.com/images/M/MV5BMWMwMGQzZTItY2JlNC00OWZiLWIyMDctNDk2ZDQ2YjRjMWQ0XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_QL100_UX258.jpg"
     }, {
       title: "The Dark Knight",
       desc: "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
-      id: 4,
+      id: Math.random(),
       rate: 3,
       imgSrc: "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_QL100_UX258.jpg"
     }, {
       title: "Mr. Robot",
       desc: "Elliot, a brilliant but highly unstable young cyber-security engineer and vigilante hacker, becomes a key figure in a complex game of global dominance when he and his shadowy allies try to take down the corrupt corporation he works for.",
-      id: 5,
+      id: Math.random(),
       rate: 4,
       imgSrc: "https://m.media-amazon.com/images/M/MV5BMzgxMmQxZjQtNDdmMC00MjRlLTk1MDEtZDcwNTdmOTg0YzA2XkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_QL100_UX258.jpg"
     }, {
       title: "The Great Hack",
       desc: "The Cambridge Analytica scandal is examined through the roles of several affected persons.",
-      id: 6,
+      id: Math.random(),
       rate: 3,
       imgSrc: "https://m.media-amazon.com/images/M/MV5BMGViZWEwOGItMGZlMC00YzE1LTk5ZWItMGYxYjhhMjBmNDMwXkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_QL100_UX258.jpg"
     }, {
       title: "The Social Dilemma",
       desc: "Explores the dangerous human impact of social networking, with tech experts sounding the alarm on their own creations.",
-      id: 7,
+      id: Math.random(),
       rate: 4,
       imgSrc: "https://m.media-amazon.com/images/M/MV5BNDVhMGNhYjEtMDkwZi00NmQ5LWFkODktYzhiYjY2NTZmYTNhXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_QL100_UX258.jpg"
     }, {
       title: "Gandhi",
       desc: "The life of the lawyer who became the famed leader of the Indian revolts against the British rule through his philosophy of nonviolent protest.",
-      id: 8,
+      id: Math.random(),
       rate: 4,
       imgSrc: "https://m.media-amazon.com/images/M/MV5BMzJiZDRmOWUtYjE2MS00Mjc1LTg1ZDYtNTQxYWJkZTg1OTM4XkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_QL100_UX258.jpg"
     }, {
       title: "The Wolf of Wall Street",
       desc: "Based on the true story of Jordan Belfort, from his rise to a wealthy stock-broker living the high life to his fall involving crime, corruption and the federal government.",
-      id: 9,
+      id: Math.random(),
       rate: 5,
       imgSrc: "https://m.media-amazon.com/images/M/MV5BMjIxMjgxNTk0MF5BMl5BanBnXkFtZTgwNjIyOTg2MDE@._V1_QL100_UX258.jpg"
     }]
 
 
-  const [movieList, setMovieList] = useState(data)
+  const [movieList, setMovieList] = useState(data);
   const [search, setSearch] = useState("");
-
-  const deleteCard = idMovie => {
-    setMovieList(movieList.filter((item) =>
-      item.id !== idMovie
-
-    ))
+  const handleSearch = (e) => {
+    setSearch(e.target.value)
+  }
+  const [rate, setRate] = useState(0)
+  const ratingChanged = (newRating) => {
+    setRate(newRating)
   }
 
+  const handleAdd = (newMovie) => {
+    setMovieList([...movieList, newMovie])
+  }
 
-  const [open, setOpen] = React.useState(false);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const handleDelete = (id) => {
+    setMovieList(movieList.filter(movie => movie.id !== id))
+  }
 
-  const handleClose = () => {
-    setOpen(false);
-  };
 
 
   return (
     <div >
+
       <div className={classes.root}>
-        <AppBar position="static">
+        <AppBar position="static" style={{ backgroundColor: "#232323" }}>
           <Toolbar>
             <IconButton
               edge="start"
@@ -162,29 +162,22 @@ function App() {
               <MenuIcon />
             </IconButton>
             <Typography className={classes.title} variant="h6" noWrap>
-              Movie-App
+              MrMovieInfo
             </Typography>
-            <Button className={classes.menuButton} variant="contained" onClick={handleClickOpen}>Add New Movie</Button>
-            <AddNewMovie
-              open={open}
-              onClose={handleClose}
+            <AddNewMovie handleAdd={handleAdd} />
+            <ReactStars
+              count={5}
+              onChange={ratingChanged}
+              size={24}
+              activeColor="#ffd700"
             />
-
-            <Rating
-              name="simple-controlled"
-              value={value}
-              onChange={(event, newValue) => {
-                setValue(newValue);
-              }}
-            />
-
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
               <InputBase
                 placeholder="Search…"
-                onChange={(search) => setSearch(search.target.value)}
+                onChange={handleSearch}
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,
@@ -195,7 +188,7 @@ function App() {
           </Toolbar>
         </AppBar>
       </div>
-      <MovieList movieList={movieList} deleteCard={deleteCard} search={search} />
+      <MovieList movieList={movieList.filter((movie) => movie.rate >= rate )} handleDelete={handleDelete} search={search} />
     </div>
   );
 }
