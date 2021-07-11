@@ -2,7 +2,7 @@ import './App.css';
 import React, { useState } from 'react'
 import { MovieList } from './Components/MovieList';
 import AddNewMovie from './Components/AddNewMovie'
-import { AppBar, Toolbar, IconButton, Typography, InputBase, makeStyles, fade } from '@material-ui/core';
+import { AppBar, Toolbar, IconButton, Typography, InputBase, makeStyles, fade, Box } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import ReactStars from "react-rating-stars-component";
@@ -95,11 +95,11 @@ function App() {
       rate: 3,
       imgSrc: "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_QL100_UX258.jpg"
     }, {
-      title: "Mr. Robot",
-      desc: "Elliot, a brilliant but highly unstable young cyber-security engineer and vigilante hacker, becomes a key figure in a complex game of global dominance when he and his shadowy allies try to take down the corrupt corporation he works for.",
+      title: "Minimalism",
+      desc: "Examining the many levels of minimalism by looking inside the lives of minimalists from various walks of life.",
       id: Math.random(),
       rate: 4,
-      imgSrc: "https://m.media-amazon.com/images/M/MV5BMzgxMmQxZjQtNDdmMC00MjRlLTk1MDEtZDcwNTdmOTg0YzA2XkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_QL100_UX258.jpg"
+      imgSrc: "https://m.media-amazon.com/images/M/MV5BZjZjODAwMGQtOGM4NC00ZjJiLWI2ZGEtNzY5ZTY2ZGQ2NDBlXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_QL100_UX258.jpg"
     }, {
       title: "The Great Hack",
       desc: "The Cambridge Analytica scandal is examined through the roles of several affected persons.",
@@ -165,12 +165,14 @@ function App() {
               MrMovieInfo
             </Typography>
             <AddNewMovie handleAdd={handleAdd} />
-            <ReactStars
-              count={5}
-              onChange={ratingChanged}
-              size={24}
-              activeColor="#ffd700"
-            />
+            <Box m={1} >
+              <ReactStars
+                count={5}
+                onChange={ratingChanged}
+                size={24}
+                activeColor="#ffd700"
+              />
+            </Box>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
@@ -188,7 +190,7 @@ function App() {
           </Toolbar>
         </AppBar>
       </div>
-      <MovieList movieList={movieList.filter((movie) => movie.rate >= rate )} handleDelete={handleDelete} search={search} />
+      <MovieList movieList={movieList.filter((movie) => movie.rate >= rate)} handleDelete={handleDelete} search={search} />
     </div>
   );
 }

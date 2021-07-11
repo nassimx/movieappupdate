@@ -1,11 +1,12 @@
 import React from 'react';
-import { Grid, Typography, CardMedia, CardContent, CardActions, CardActionArea, Button, Card, makeStyles } from '@material-ui/core';
+import { Grid, Typography, CardMedia, CardContent, CardActions, Button, Card, makeStyles } from '@material-ui/core';
 import ReactStars from "react-rating-stars-component";
 
 
 const useStyles = makeStyles({
     root: {
         maxWidth: 345,
+        minWidth: 100,
     },
     media: {
         height: 500,
@@ -19,9 +20,7 @@ export const MovieCard = ({ movieCard, handleDelete }) => {
 
     return (
         <div style={{ padding: 30 }}>
-
             <Grid container
-
                 item
                 alignContent="flex-start"
                 direction="row"
@@ -29,29 +28,26 @@ export const MovieCard = ({ movieCard, handleDelete }) => {
                 alignItems="center"
                 wrap="wrap"
             >
-                <Card className={classes.root}>
-                    <CardActionArea>
-                        <CardMedia
-                            className={classes.media}
-                            image={movieCard.imgSrc}
-
-                        />
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                {movieCard.title}
-                                <ReactStars
-                                    count={5}
-                                    size={24}
-                                    activeColor="#ffd700"
-                                    value={movieCard.rate}
-                                    edit={false}
-                                />
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                {movieCard.desc}
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
+                <Card className={classes.root}  >
+                    <CardMedia
+                        className={classes.media}
+                        image={movieCard.imgSrc}
+                    />
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            {movieCard.title}
+                            <ReactStars
+                                count={5}
+                                size={24}
+                                activeColor="#ffd700"
+                                value={movieCard.rate}
+                                edit={false}
+                            />
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                            {movieCard.desc}
+                        </Typography>
+                    </CardContent>
                     <CardActions>
                         <Button onClick={() => handleDelete(movieCard.id)} variant="contained" color="secondary">
                             Delete

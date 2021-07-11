@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import CloseIcon from '@material-ui/icons/Close';
-import { IconButton, Typography, TextField, Button, makeStyles } from '@material-ui/core';
+import { IconButton, Typography, TextField, Button, makeStyles, withStyles, Dialog } from '@material-ui/core';
 
 
 
@@ -77,14 +75,16 @@ const AddNewMovie = ({ handleAdd }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // eslint-disable-next-line no-unused-vars
         const newMovie = {
             imgSrc,
             title,
             rate,
             id: Math.random,
             desc
+
         }
+        handleSubmit(newMovie);
+
     };
     return (
         <div>
@@ -145,7 +145,7 @@ const AddNewMovie = ({ handleAdd }) => {
                                 value={desc}
                             />
                             <Button autoFocus type="submit">
-                                Add
+                                Submit
                             </Button>
                         </form>
                     </div>
