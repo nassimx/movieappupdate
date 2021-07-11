@@ -137,9 +137,9 @@ function App() {
     setRate(newRating)
   }
 
-  const handleAdd = (newMovie) => {
-    setMovieList([...movieList, newMovie])
-  }
+  const handleAdd = (imgSrc, title, rate, desc, id) =>
+    setMovieList([...movieList, { imgSrc, title, rate, desc, id }]);
+
 
   const handleDelete = (id) => {
     setMovieList(movieList.filter(movie => movie.id !== id))
@@ -164,7 +164,7 @@ function App() {
             <Typography className={classes.title} variant="h6" noWrap>
               MrMovieInfo
             </Typography>
-            <AddNewMovie handleAdd={handleAdd} />
+            <AddNewMovie handleAdd={handleAdd} movieList={movieList} />
             <Box m={1} >
               <ReactStars
                 count={5}

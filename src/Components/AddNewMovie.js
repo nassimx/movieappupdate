@@ -53,7 +53,7 @@ const DialogContent = withStyles((theme) => ({
 }))(MuiDialogContent);
 
 
-const AddNewMovie = ({ handleAdd }) => {
+const AddNewMovie = ({ handleAdd, movieList }) => {
     const classes = useStyles();
 
     const [open, setOpen] = React.useState(false);
@@ -65,27 +65,17 @@ const AddNewMovie = ({ handleAdd }) => {
         setOpen(false);
     };
 
-
-    const [title, setTitle] = useState("");
-    const [rate, setRate] = useState("");
-    const [desc, setDescription] = useState("");
     const [imgSrc, setImgSrc] = useState("");
+    const [title, setTitle] = useState("");
+    const [rate, setRate] = useState("0");
+    const [desc, setDescription] = useState("");
 
 
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        const newMovie = {
-            imgSrc,
-            title,
-            rate,
-            id: Math.random,
-            desc
 
-        }
-        handleSubmit(newMovie);
 
-    };
+
+
     return (
         <div>
 
@@ -98,56 +88,57 @@ const AddNewMovie = ({ handleAdd }) => {
                 </DialogTitle>
                 <DialogContent dividers>
                     <div className={classes.root}>
-                        <form onSubmit={handleSubmit}>
-                            <TextField
 
-                                label="Image Url"
-                                style={{ margin: 8 }}
-                                fullWidth
-                                margin="normal"
-                                onChange={(e) => setImgSrc(e.target.value)}
-                                value={imgSrc}
-                                variant="outlined"
-                                type="url"
-                            />
-                            <TextField
-                                label="Movie Title"
-                                className={classes.textField}
-                                variant="outlined"
-                                type="text"
-                                onChange={(e) => setTitle(e.target.value)}
-                                value={title}
-                            />
-                            <TextField
-                                label="Rate"
-                                className={classes.textField}
-                                variant="outlined"
-                                inputProps={{ min: 1, max: 5 }}
-                                helperText="rate scale 1-5"
-                                type="number"
-                                onChange={(e) => setRate(e.target.value)}
-                                value={rate}
-                            />
-                            <TextField
-                                label="Description"
-                                multiline
-                                rows={5}
-                                rowsMax={12}
-                                placeholder="Write Something About The Movie"
-                                fullWidth
-                                margin="normal"
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                                variant="outlined"
-                                type="text"
-                                onChange={(e) => setDescription(e.target.value)}
-                                value={desc}
-                            />
-                            <Button autoFocus type="submit">
-                                Submit
-                            </Button>
-                        </form>
+                        <TextField
+
+                            label="Image Url"
+                            style={{ margin: 8 }}
+                            fullWidth
+                            margin="normal"
+                            onChange={(e) => setImgSrc(e.target.value)}
+                            variant="outlined"
+                            type="url"
+                        />
+                        <TextField
+                            label="Movie Title"
+                            className={classes.textField}
+                            variant="outlined"
+                            type="text"
+                            onChange={(e) => setTitle(e.target.value)}
+                        />
+                        <TextField
+                            label="Rate"
+                            className={classes.textField}
+                            variant="outlined"
+                            inputProps={{ min: 1, max: 5 }}
+                            helperText="rate scale 1-5"
+                            type="number"
+                            onChange={(e) => setRate(e.target.value)}
+                        />
+                        <TextField
+                            label="Description"
+                            multiline
+                            rows={5}
+                            rowsMax={12}
+                            placeholder="Write Something About The Movie"
+                            fullWidth
+                            margin="normal"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            variant="outlined"
+                            type="text"
+                            onChange={(e) => setDescription(e.target.value)}
+                        />
+
+                        <Button variant="contained" color="primary" onClick={() => {
+                            handleClose()
+
+                            handleAdd(imgSrc, title, rate, desc)
+                        }}
+
+                        >Add</Button>
+
                     </div>
                 </DialogContent>
 

@@ -6,7 +6,7 @@ import ReactStars from "react-rating-stars-component";
 const useStyles = makeStyles({
     root: {
         maxWidth: 345,
-        minWidth: 100,
+        minWidth: 345,
     },
     media: {
         height: 500,
