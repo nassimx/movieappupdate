@@ -1,11 +1,13 @@
 import './App.css';
-import React, { useState } from 'react'
-import { MovieList } from './Components/MovieList';
-import AddNewMovie from './Components/AddNewMovie'
+import React, { useState } from 'react';
+import { MovieList } from './Components/Movie/MovieList';
+import AddNewMovie from './Components/Movie/AddNewMovie';
 import { AppBar, Toolbar, IconButton, Typography, InputBase, makeStyles, fade, Box } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import ReactStars from "react-rating-stars-component";
+import { Route, Router } from 'react-router-dom';
+import MovieDetails from './Components/Movie/MovieDetails';
 
 
 function App() {
@@ -68,6 +70,7 @@ function App() {
   }
   ));
   const classes = useStyles();
+
 
   const data = [
     {
@@ -190,7 +193,12 @@ function App() {
           </Toolbar>
         </AppBar>
       </div>
+      {/* <Router> */}
+      
       <MovieList movieList={movieList.filter((movie) => movie.rate >= rate)} handleDelete={handleDelete} search={search} />
+      {/* <Route path="/MovieDetails/:id" render={(props) => <MovieDetails {...props}  />} /> */}
+      {/* </Router> */}
+
     </div>
   );
 }
