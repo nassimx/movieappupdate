@@ -147,3 +147,4 @@ const AddNewMovie = ({ handleAdd, movieList }) => {
     );
 }
 export default AddNewMovie
+////
