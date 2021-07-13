@@ -3,10 +3,9 @@ import React, { useState } from 'react'
 import { MovieList } from './Components/MovieList';
 import AddNewMovie from './Components/AddNewMovie'
 import { AppBar, Toolbar, IconButton, Typography, InputBase, makeStyles, fade, Box } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import ReactStars from "react-rating-stars-component";
-
+import HomeIcon from '@material-ui/icons/Home';
 
 function App() {
   const useStyles = makeStyles((theme) => ({
@@ -159,11 +158,12 @@ function App() {
               color="inherit"
               aria-label="open drawer"
             >
-              <MenuIcon />
+              <HomeIcon fontSize="large" />
             </IconButton>
             <Typography className={classes.title} variant="h6" noWrap>
               MrMovieInfo
             </Typography>
+
             <AddNewMovie handleAdd={handleAdd} movieList={movieList} />
             <Box m={1} >
               <ReactStars
